@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {DataStore} from 'aws-amplify';
+import {Book} from "../models";
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'amplify2';
+  public books: Book[] = [];
+
+  async ngOnInit() {
+    this.books = await DataStore.query(Book);
+  }
 }
